@@ -25,16 +25,12 @@ private lateinit var viewModel: SepetViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View? {
         binding= FragmentSepetBinding.inflate(inflater,container,false)
 
-
-
         viewModel.sepetListesi.observe(viewLifecycleOwner) {
             val sepetlerAdapter= SepetAdapter(requireContext(),it,viewModel)
             binding.sepetRecyclerView.adapter=sepetlerAdapter
         }
-
         binding.sepetRecyclerView.layoutManager= LinearLayoutManager(requireContext())
         viewModel.sepettekiYemekleriYukle()
-
         return binding.root
     }
 

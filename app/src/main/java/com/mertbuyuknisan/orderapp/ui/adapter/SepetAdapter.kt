@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.mertbuyuknisan.orderapp.data.entity.Sepetler
 import com.mertbuyuknisan.orderapp.data.entity.Yemekler
 import com.mertbuyuknisan.orderapp.databinding.CardTasarimSepetBinding
@@ -35,8 +36,14 @@ class SepetAdapter(var mContext: Context,var sepetListesi: List<Sepetler>,var vi
             .into(t.imageViewYemekResmiSepet)
 
         t.imageButtonYemekSilSepet.setOnClickListener {
-            viewModel.sepettenYemekSil(sepet.sepet_yemek_id)
-            viewModel.sepettekiYemekleriYukle()
+            Snackbar.make(it,"${sepet.yemek_adi} silinsin mi ", Snackbar.LENGTH_INDEFINITE).setAction ("Evet"){
+                viewModel.sepettenYemekSil(sepet.sepet_yemek_id)
+                viewModel.sepettekiYemekleriYukle()
+            }.show()
+
+
+
+
 
         }
     }
